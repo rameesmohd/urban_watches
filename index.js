@@ -5,7 +5,12 @@ const express = require("express");
 const app = express();
 const path = require('path')
 
-mongoose.connect(process.env.url)
+mongoose.connect(process.env.url).then(res=>{
+  console.log('database connected')
+})
+.catch(err=>{
+  console.log('some eror while connecting to database');
+})
 
 //app.use(logger('dev'))
 app.use(express.static(path.join(__dirname, 'public')));
