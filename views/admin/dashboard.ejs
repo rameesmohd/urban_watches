@@ -1,0 +1,444 @@
+<%- include('../layouts/adminHeader.ejs') %>
+
+  <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+
+    <div class="container-fluid py-4">
+      <div class="row">
+        <div class="col-12">
+          <div class="card my-4">
+            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+              <div class="bg-gradient-dark shadow-dark border-radius-lg  ">
+                <div class="d-flex justify-content-between align-items-center px-3 pt-1">
+                  <h6 class="text-white text-capitalize mb-0">DASHBOARD</h6>
+                  <div class="d-flex align-items-center mt-2">
+                    <a  href="/admin/sales-report" class="btn btn-dark btn-sm">Sales Report</a>
+                  </div>
+        
+                </div>
+              </div>
+            </div>
+            
+            <div class="container-fluid py-4">
+
+              <div class="row">
+
+                <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
+                  <div class="card">
+                      <div class="card-header p-3 pt-2">
+                        <div class="icon icon-md icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute">
+                           <i class="material-icons opacity-10">weekend</i>
+                        </div>
+                           <div class="d-flex align-items-end justify-content-end pt-1">
+                        <div class="mx-2">
+                          <p class=" mb-0 text-capitalize">Today's Revenue</p>
+                           <h4 class="mb-0">₹ <%= todayRevenue %></h4>
+                        </div>
+                        <div class="mx-2">
+                           <p class="text-sm mb-0 text-capitalize">Today's Sales</p>
+                           <h4 class="mb-0">₹ <%= sumTodaySales %></h4>
+                        </div>
+                      </div>
+                    </div>
+                    <hr class="dark horizontal my-0">
+                    <div class="card-footer p-2">
+                      <p class="mb-0"><span class="text-success text-sm font-weight-bolder"><%= countTodaySales %></span> sales today</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
+                  <div class="card">
+                    <div class="card-header p-3 pt-2">
+                      <div class="icon icon-md icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute">
+                        <i class="material-icons opacity-10">person</i>
+                      </div>
+
+                      <div class="d-flex align-items-end justify-content-end pt-1">
+                        <div class="mx-2">
+                          <p class="text-sm mb-0 text-capitalize">Month's Revenue</p>
+                           <h4 class="mb-0">₹ <%= monthRevenue %></h4>
+                        </div>
+                        <div class="mx-2">
+                           <p class="text-sm mb-0 text-capitalize">Month's Sales</p>
+                           <h4 class="mb-0">₹ <%= sumThisMonthSales %></h4>
+                        </div>
+                      </div>
+
+                    </div>
+                    <hr class="dark horizontal my-0">
+                    <div class="card-footer p-2">
+                      <p class="mb-0"><span class="text-success text-sm font-weight-bolder"><%= countThisMonthSales %></span> sales this month</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
+                  <div class="card">
+                    <div class="card-header p-3 pt-2">
+                      <div class="icon icon-md icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
+                        <i class="material-icons opacity-10">person</i>
+                      </div>
+
+                      <div class="d-flex align-items-end justify-content-end pt-1">
+
+                        <div class="mx-2">
+                          <p class="text-sm mb-0 text-capitalize">Total Clients</p>
+                          <h4 class="mb-0"><%= userCount %></h4>
+                       </div>
+                        <div class="mx-2">
+                          <p class="text-sm mb-0 text-capitalize">Total's Revenue</p>
+                           <h4 class="mb-0">₹ <%= totalRevenue %></h4>
+                        </div>
+                        <div class="mx-2">
+                           <p class="text-sm mb-0 text-capitalize">Total Sales</p>
+                           <h4 class="mb-0">₹ <%= sumTotalSales %></h4>
+                        </div>
+                      </div>
+                    </div>
+                    <hr class="dark horizontal my-0">
+                    <div class="card-footer p-2">
+                      <p class="mb-0"><span class="text-danger text-sm font-weight-bolder"><%= countTotalSales %></span> sales total</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- charts -->
+              <div class="row mt-4">
+
+                <div class="col-lg-6 col-md-6 mt-4 mb-4">
+                  <div class="card z-index-2 ">
+                    <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
+                      <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                        <div class="chart">
+                          <canvas id="chart-bars" class="chart-canvas" height="270"></canvas>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-body">
+                      <h6 class="mb-0 ">Order Status</h6>
+                      <p class="text-sm ">Total Order Statuses</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-lg-6 col-md-6 mt-4 mb-4">
+                  <div class="card z-index-2  ">
+                    <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
+                      <div class="bg-gradient-success shadow-success border-radius-lg py-3 pe-1">
+                        <div class="chart">
+                          <canvas id="chart-line" class="chart-canvas" height="270"></canvas>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-body">
+                      <h6 class="mb-0 "> Monthly Sales </h6>
+                      <p class="text-sm "> Sales of this month </p>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="row mt-4 w-100 px-5">
+
+                <div class="col-lg-12 mt-4 mb-3">
+                  <div class="card z-index-2 ">
+                    <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
+                      <div class="bg-gradient-dark shadow-dark border-radius-lg py-3 pe-1">
+                        <div class="chart">
+                          <canvas id="chart-line-tasks" class="chart-canvas" height="320"></canvas>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-body">
+                      <h6 class="mb-0 ">Yearly Sales</h6>
+                      <p class="text-sm ">Last Campaign Performance</p>
+                    </div>
+                  </div>
+                </div>
+
+              </div>  
+              
+              <!-- chart end -->
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+  <script src="/assets/js/plugins/chartjs.min.js"></script>
+  
+  <script>
+    var ctx = document.getElementById("chart-bars").getContext("2d");
+    let orderStatusData = '<%=JSON.stringify(orderStatusData)%>'
+    orderStatusData=JSON.parse(orderStatusData)
+  
+
+    new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: ["Order Confirmed","Shipped","Out For Delivery","Delivered","Canceled","Returned"],
+        datasets: [{
+          label: "Sales",
+          tension: 0.4,
+          borderWidth: 0,
+          borderRadius: 4,
+          borderSkipped: false,
+          backgroundColor: "rgba(255, 255, 255, .8)",
+          data: orderStatusData,
+          maxBarThickness: 6
+        }, ],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: false,
+          }
+        },
+        interaction: {
+          intersect: false,
+          mode: 'index',
+        },
+        scales: {
+          y: {
+            grid: {
+              drawBorder: false,
+              display: true,
+              drawOnChartArea: true,
+              drawTicks: false,
+              borderDash: [5, 5],
+              color: 'rgba(255, 255, 255, .2)'
+            },
+            ticks: {
+              suggestedMin: 0,
+              suggestedMax: 500,
+              beginAtZero: true,
+              padding: 10,
+              font: {
+                size: 14,
+                weight: 300,
+                family: "Roboto",
+                style: 'normal',
+                lineHeight: 2
+              },
+              color: "#fff"
+            },
+          },
+          x: {
+            grid: {
+              drawBorder: false,
+              display: true,
+              drawOnChartArea: true,
+              drawTicks: false,
+              borderDash: [5, 5],
+              color: 'rgba(255, 255, 255, .2)'
+            },
+            ticks: {
+              display: true,
+              color: '#f8f9fa',
+              padding: 10,
+              font: {
+                size: 14,
+                weight: 300,
+                family: "Roboto",
+                style: 'normal',
+                lineHeight: 2
+              },
+            }
+          },
+        },
+      },
+    });
+
+
+    var ctx2 = document.getElementById("chart-line").getContext("2d");
+
+    let dailySalesCount = '<%=JSON.stringify(dailySalesCount)%>'
+    
+    dailySalesCount=JSON.parse(dailySalesCount)
+    let day=[]
+    dailySalesCount.forEach((element,i) => {
+      day[i]=[i+1]
+    });
+    
+    new Chart(ctx2, {
+      type: "line",
+      data: {
+        labels:day,
+        datasets: [{
+          label: "Mobile apps",
+          tension: 0,
+          borderWidth: 0,
+          pointRadius: 5,
+          pointBackgroundColor: "rgba(255, 255, 255, .8)",
+          pointBorderColor: "transparent",
+          borderColor: "rgba(255, 255, 255, .8)",
+          borderColor: "rgba(255, 255, 255, .8)",
+          borderWidth: 4,
+          backgroundColor: "transparent",
+          fill: true,
+          data: dailySalesCount,
+          maxBarThickness: 6
+
+        }],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: false,
+          }
+        },
+        interaction: {
+          intersect: false,
+          mode: 'index',
+        },
+        scales: {
+          y: {
+            grid: {
+              drawBorder: false,
+              display: false,
+              drawOnChartArea: true,
+              drawTicks: false,
+              borderDash: [5, 5],
+              color: 'rgba(255, 255, 255, .2)'
+            },
+            ticks: {
+              display: true,
+              color: '#f8f9fa',
+              padding: 10,
+              font: {
+                size: 14,
+                weight: 300,
+                family: "Roboto",
+                style: 'normal',
+                lineHeight: 2
+              },
+            }
+          },
+          x: {
+            grid: {
+              drawBorder: false,
+              display: false,
+              drawOnChartArea: false,
+              drawTicks: false,
+              borderDash: [5, 5]
+            },
+            ticks: {
+              display: true,
+              color: '#f8f9fa',
+              padding: 10,
+              font: {
+                size: 14,
+                weight: 300,
+                family: "Roboto",
+                style: 'normal',
+                lineHeight: 2
+              },
+            }
+          },
+        },
+      },
+    });
+
+    var ctx3 = document.getElementById("chart-line-tasks").getContext("2d");
+
+    let monthlySalesData = '<%=JSON.stringify(monthlySalesData)%>'
+    console.log(monthlySalesData);
+
+    monthlySalesData=JSON.parse(monthlySalesData)
+
+    let month=[]
+    monthlySalesData.forEach((element,i) => {
+      month[i]=[i+1]
+    });
+
+    new Chart(ctx3, {
+      type: "line",
+      data: {
+        labels: ['January','February','March','April','May','June','July','August','September','October','November','December'],
+        datasets: [{
+          label: "Mobile apps",
+          tension: 0,
+          borderWidth: 0,
+          pointRadius: 5,
+          pointBackgroundColor: "rgba(255, 255, 255, .8)",
+          pointBorderColor: "transparent",
+          borderColor: "rgba(255, 255, 255, .8)",
+          borderWidth: 4,
+          backgroundColor: "transparent",
+          fill: true,
+          data: monthlySalesData,
+          maxBarThickness: 6
+
+        }],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: false,
+          }
+        },
+        interaction: {
+          intersect: false,
+          mode: 'index',
+        },
+        scales: {
+          y: {
+            grid: {
+              drawBorder: false,
+              display: true,
+              drawOnChartArea: true,
+              drawTicks: false,
+              borderDash: [5, 5],
+              color: 'rgba(255, 255, 255, .2)'
+            },
+            ticks: {
+              display: true,
+              padding: 10,
+              color: '#f8f9fa',
+              font: {
+                size: 14,
+                weight: 300,
+                family: "Roboto",
+                style: 'normal',
+                lineHeight: 2
+              },
+            }
+          },
+          x: {
+            grid: {
+              drawBorder: false,
+              display: false,
+              drawOnChartArea: false,
+              drawTicks: false,
+              borderDash: [5, 5]
+            },
+            ticks: {
+              display: true,
+              color: '#f8f9fa',
+              padding: 10,
+              font: {
+                size: 14,
+                weight: 300,
+                family: "Roboto",
+                style: 'normal',
+                lineHeight: 2
+              },
+            }
+          },
+        },
+      },
+    });
+  </script>
+
+  <script> document.getElementById('dashboard').classList='nav-link text-white active'</script>
+  
+  <%- include('../layouts/adminFooter.ejs') %>

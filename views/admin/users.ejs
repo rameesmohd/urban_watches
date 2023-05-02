@@ -1,0 +1,72 @@
+<%- include('../layouts/adminHeader.ejs')  %>
+
+  <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+
+    <div class="container-fluid py-4">
+      <div class="row">
+        <div class="col-12">
+          <div class="card my-4">
+            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+              <div class="bg-gradient-dark shadow-dark border-radius-lg pt-4 pb-3">
+                <div class="d-flex justify-content-between align-items-center px-3">
+                  <h6 class="text-white text-capitalize mb-0">USERS</h6>
+                  <a href="/admin/new-user" class="btn btn-dark">Add New User</a>
+                </div>
+              </div>
+            </div>
+            
+            <div class="card-body px-0 pb-2">
+              <div class="table-responsive p-0">
+                <table class="table align-items-center mb-0">
+                  <thead>
+                    <tr>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
+                      <th class="text-secondary opacity-7"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% 
+                    if(users.length >0){
+                        for(let i=0;i<users.length;i++){
+                          %>
+                          <tr>
+                            <td scope="row"><%= users[i].name %></td>
+                            <td><%= users[i].email %></td>
+                         
+                            <td>
+
+
+                              <button type="submit" class="btn btn-success">
+                                  <a class="text-light text-decoration-none" href="/admin/edit-user?id=<%= users[i]._id%>">edit </a>
+                              </button>
+                                    
+                        <button type="submit" class="btn btn-danger"><a class=" text-light text-decoration-none" href="/admin/delete-user?id=<%= users[i]._id%>">delete</a></button>
+                    <% if(users[i].is_blocked==1){ %>
+                        <a class="btn-text btn btn-danger text-light text-decoration-none" href="/admin/unblock-user?id=<%= users[i]._id%>">unblock</a>
+
+                        <%}else{%>
+                            <a class="btn-text btn btn-success text-light text-decoration-none" href="/admin/block-user?id=<%= users[i]._id%>">block</a>
+
+                            <%}%>
+                               
+                           </td>
+                          <tr> 
+                        <%}}%>  
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <%- include('../layouts/adminFooter.ejs')  %>
+
+  <script>
+
+document.getElementById('users').classList='nav-link text-white active'
+
+</script>

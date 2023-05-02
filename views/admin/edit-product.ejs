@@ -1,0 +1,123 @@
+<%- include('../layouts/header.ejs') %>
+
+<section class="vh-150" style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+          <div class="card shadow-2-strong" style="border-radius: 1rem;">
+            <div class="card-body p-5 text-center">
+  
+              <h3 class="mb-5">Edit Product</h3>
+
+              <form action="/admin/edit-product" method="post" enctype="multipart/form-data"> 
+                <div class="form-outline mb-4">
+                    <input type="text" name="name" value="<%= product.name %>" id="typeEmailX-2" class="form-control form-control-lg" placeholder="Enter name" required/>
+                    <label class="form-label" for="typeEmailX-2">Product Name</label>
+                  </div>
+
+               <div class="form-outline mb-4">
+                <input type="number" name="price" value="<%= product.price %>" id="typeEmailX-2" class="form-control form-control-lg" placeholder="Enter price" required/>
+                <label class="form-label" for="typeEmailX-2">Price</label>
+               </div>
+  
+              <div class="form-outline mb-4">
+                <input type="text" name="meterial" value="<%= product.meterial %>" id="typePasswordX-2" class="form-control form-control-lg" placeholder="Meterial" required/>
+                <label class="form-label" >Meterial</label>
+              </div>
+
+              <div class="form-outline mb-4">
+                <input type="text" name="description" value="<%= product.description %>" id="typePasswordX-2" class="form-control form-control-lg" placeholder="Description" required/>
+                <label class="form-label" >Discription</label>
+              </div>
+
+              <label for="gender">Gender</label>
+              <select name="gender" id="gender">
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Unisex">Unisex</option>
+              </select>
+
+              <br><br>
+              <div class="form-outline mb-4">
+                <select name="category" class="form-control">
+                    <option selected>Select category</option>
+                    <% if(category.length > 0){ %>
+                
+                        <% for(let i = 0 ;i<category.length ; i++){ %>
+                           
+                            <option value="<%= category[i].name %>"> <%= category[i].name %> </option>
+                
+                            <% } %>
+                    <% } %>
+                    </select>   
+                    <label for="">Select Category</label>             
+              </div>
+
+              <div class="form-outline mb-4">
+                <input type="text" name="stock" value="<%= product.stock %>" id="typePasswordX-2" class="form-control form-control-lg" placeholder="Stock" required/>
+                <label class="form-label" >stock</label>
+              </div>
+
+      
+
+            
+            <div class="mb-3">
+              <div class="owl-carousel testimonial-carousel">
+
+                  <% product.image.forEach(element => { %>
+
+                      <div class="testimonial-item text-center" id="<%= element %>">
+                          <img class="img-fluid rounded-circle mx-auto mb-4" src="/productimages/<%= element %>" style="width: 100px; height: 100px;">
+
+                          <% if (product.image.length>0) { %>
+                                  <button type="button" class="btn btn-square btn-secondary" id="" title="Delete photo" onclick="imgRemove('<%= element %>','<%= product._id %>')"><i class="fa fa-trash hover"></i></button>
+                          <% } %>
+                          
+                      </div>
+                  <% }) %> 
+              </div>
+          </div>
+            
+              <div class="form-outline mb-4">
+                <input type="file" name="images" value="<%= product.image %>" id="typePasswordX-2" class="form-control form-control-lg" placeholder="Image" multiple/>
+                <label class="form-label">image</label>
+              </div>
+
+
+              <input type="hidden" name="id" value="<%= product._id %>">
+
+              <button class="btn btn-primary btn-lg btn-block" type="submit" value="Update User">Update Product</button>
+            </form> 
+            <a href="/admin/products">Go back</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script>
+
+function imgRemove(file,productId){
+  $.ajax({
+			url : `/admin/image-remove?file=${file}&productId=${productId}`,
+			type : 'get',
+			contentType : 'application/json',
+			dataType: 'json',
+			success:(res)=> document.getElementById(`${file}`).style.display = 'none'
+		})}
+
+
+
+    $(".testimonial-carousel").owlCarousel({
+        autoplay: true,
+        smartSpeed: 1000,
+        items: 1,
+        dots: true,
+        loop: true,
+        nav : false
+    });
+  </script>
+
+  <%- include('../layouts/footer.ejs') %>

@@ -1,0 +1,95 @@
+<%- include('../layouts/adminHeader')  %>
+  
+  <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+
+    <div class="container-fluid py-4">
+      <div class="row">
+        <div class="col-12">
+          <div class="card my-4">
+
+            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+              <div class="bg-gradient-dark shadow-dark border-radius-lg pt-4 pb-3">
+                <div class="d-flex justify-content-between align-items-center px-3">
+                  <h6 class="text-white text-capitalize mb-0">CATEGORY</h6>
+                  <a id="category" href="/admin/add-category" class="btn btn-dark btn-sm">Add New</a>
+                </div>
+              </div>
+            </div>
+            
+            <div class="card-body px-0 pb-2">
+              <div class="table-responsive p-0">
+                <table class="table align-items-center mb-0">
+                  <thead>
+                    <tr>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
+                      <th class="text-secondary opacity-7"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                     
+                    <%if(category.length >0){ %>
+                      <%  for(let i=0;i<category.length;i++){ %>
+                          
+                          <tr>
+                            <td scope="row"><%= category[i].name %></td>
+                            <td>
+                              <button type="button" class="btn btn-primary"><a class=" text-light text-decoration-none" href="/admin/edit-category?id=<%= category[i]._id %>">Edit</a></button>
+                                <% if(category[i].is_listed===0){ %>  
+                                <button type="button" class="btn btn-danger"><a class=" text-light text-decoration-none" href="/admin/unlist-category?id=<%= category[i]._id %>">Unlist</a></button>
+                                <% }else{ %>
+                                  <button type="button" class="btn btn-primary me-4"><a class=" text-light text-decoration-none" href="/admin/list-category?id=<%= category[i]._id %>">List</a></button>
+                                <%}%>
+                                <a class=" text-light text-decoration-none" data-bs-toggle="modal" data-bs-target="#deleteModal<%= category[i]._id %>">
+                              <button type="button" class="btn btn-danger" >Delete</button>
+                            </a>
+                           </td>
+                          </tr> 
+                          
+                          <div class="modal fade" id="deleteModal<%= category[i]._id %>" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="deleteModalLabel">Confirm Delete</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                              </div>
+                              <div class="modal-body">
+                                Are you sure you want to delete <%= category[i].name %> ?
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                <a href="/admin/delete-category?id=<%= category[i]._id %>" class="btn btn-danger">
+                                  Delete
+                                </a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <%}}%>  
+
+
+                        
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+  </main>
+
+
+      
+  <%- include('../layouts/adminFooter') %>
+
+  <script>
+
+document.getElementById('category').classList='nav-link text-white active'
+
+</script>

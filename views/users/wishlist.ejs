@@ -1,0 +1,109 @@
+<%- include('../layouts/UserHeader') %>
+
+        
+     <!-- breadcrumb -->
+	<div class="container">
+		<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
+			<a href="index.html" class="stext-109 cl8 hov-cl1 trans-04">
+				Home
+				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+			</a>
+			<span class="stext-109 cl4">
+				Wish List
+			</span>
+		</div>
+	</div>
+		
+	<!-- Wish List -->
+	<form class="bg0 p-t-75 p-b-85">
+		<div class="container">
+			<div class="row">
+
+				<div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
+					<div class="m-l-25 m-r--38 m-lr-0-xl">
+						<div class="wrap-table-shopping-cart">
+
+							<% if(user.wishlist.length === 0){ %>
+								
+								<h1 class="text-secondary">wishlist is empty!!</h1>
+								
+
+							<% }else{ %>
+							<table class="table-shopping-cart">
+
+								<tr class="table_head">
+                                 
+									<th class="column-1">Product</th>
+									<th class="column-2"></th>
+									<th class="column-3">Price</th>
+									
+									<th class="column-5">Action</th>
+								</tr>
+								
+								<% for(let i = 0 ; i < user.wishlist.length ; i++){ %>
+
+								<tr  id="<%=user.wishlist[i].product._id%>" class="table_row">
+
+									<td class="column-1">
+
+										<div class="how-itemcart1">
+											<img src="/productimages/<%= user.wishlist[i].product.image[0] %>" alt="IMG">
+										</div>
+										
+									</td>
+									<td class="column-2"><%= user.wishlist[i].product.name %></td>
+
+									<td  class="column-3">₹<%= user.wishlist[i].product.price %></td>
+
+
+									<td  style="margin-top: 55px;">
+						
+										<span class="btn btn-info" style="cursor: pointer;" onclick="addtocart('<%= user.wishlist[i].product._id %>')">Add to Cart</span>
+									
+									</td>
+
+                                    
+                                    <td>
+                                        <button onclick="removewishlist('<%= user.wishlist[i].product._id %>')" type="button" class="d-flex justify-content-center w-50 h-50" >
+                                            <span ><h2>&times;</h2></span>
+                                        </button>
+                                    </td>
+									
+								</tr>
+
+							<% }} %>
+								
+						</table>
+						</div>
+						<div class="flex-w flex-sb-m bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm">
+							
+						</div>
+					</div>
+				</div>
+
+			
+				<div class="col-sm-10 col-lg-7 col-xl-5 m-lr-10px m-b-50">
+
+                        <img class="m-l-10" src="https://www.fossil.com/on/demandware.static/-/Library-Sites-FossilSharedLibrary/default/dwf47925cc/2023/SU23/set_04032023_in/4.3_FS_IN_SP23_Ecom_Happiest_Hours_HP_Update_Desktop_Hero04.4.jpg" alt="">
+				</div>
+
+			</div>
+		</div>
+	</form>
+
+	<% if(message !=null ) {%>
+		<script>
+		  swal({ 
+			title: "Alert",  
+			text: "<%=message%>",  
+			icon: "warning",  
+			button: "oh yes!",
+			  
+		  });  
+		</script>
+
+	 <%  }%>
+
+        
+
+<%- include('../layouts/UserFooter') %>

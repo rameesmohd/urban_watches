@@ -1,0 +1,284 @@
+<%- include('../layouts/adminHeader') %>
+<main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+
+  <style>
+    .cardx {
+      position: relative;
+    }
+    .card-bodyx {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+    }
+    .img-fluid {
+      z-index: 0;
+    }
+  </style>
+
+    <div class="container-fluid py-4">
+      <div class="row">
+        <div class="col-12">
+          <div class="card my-4">
+            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+              <div class="bg-gradient-dark shadow-dark border-radius-lg pt-4 pb-3">
+                <div class="d-flex justify-content-between align-items-center px-3">
+                  <h6 class="text-white text-capitalize mb-0">BANNERS</h6>
+                  <!-- <div class="dis-flex justify-content-end mr-3 btn btn-primary btn-sm"> <a class="text-white" style="text-decoration: none;" href="/admin/coupon">Back</a></div> -->
+                </div>
+              </div>
+            </div>
+            
+            <div class="container-fluid py-4">
+              <div class="row">
+                <div class="col-12 ">
+                  <div class="my-0">
+                    <div class=" px-0 pb-2">
+                      <div class="table-responsive p-0">
+                        <div class="container-fluid">
+                            <div class="container">
+                              <!-- Title -->
+                              <div class="d-flex justify-content-between align-items-center py-3">
+
+                                <% if(bannerOne.length != 0){ %>
+                                <div class="card col-md-6 align-items-center">
+                                  <p>Banner 1</p>
+                                <div class="cardx position-relative">
+                                  <img src="/productimages/<%= bannerOne[0].image[0] %>" alt="Your Image" class="card-img-top img-fluid">
+                                  <div class="card-bodyx position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-center align-items-center">
+                                    <div data-appear="fadeInUp" data-delay="800">
+                                      <h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1" style="font-size: 1.5rem;">
+                                        <%= bannerOne[0].title %>
+                                      </h2>
+                                    </div>
+                                    <div data-appear="fadeInDown" data-delay="0" class="row d-flex justify-content-center">
+                                      <span class="ltext-101 cl2 respon2 col-12 col-md-8" style="font-size: 1rem;">
+                                        <%= bannerOne[0].description %>
+                                      </span>
+                                    </div>
+                                    <div data-appear="zoomIn" data-delay="1600">
+                                      <a  class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 btn btn-primary" style="font-size: 0.8rem;">
+                                        Shop Now
+                                      </a>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <% } %>
+
+                              <% if(bannerTwo.length != 0){ %>
+                              <div class="card col-md-6 align-items-center">
+                                <p  >Banner 2</p>
+                                <div class="cardx position-relative">
+                                  <img src="/productimages/<%= bannerTwo[0].image[0] %>" alt="Your Image" class="card-img-top img-fluid">
+                                  <div class="col-6 card-bodyx position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-center align-items-center">
+                                    
+                                    <div data-appear="fadeInDown" data-delay="0" class="row d-flex justify-content-center">
+                                      <span class="ltext-101 cl2 respon2 col-12 col-md-8" style="font-size: 1rem;">
+                                        <%= bannerTwo[0].description %>                                    
+                                      </span>
+                                    </div>
+                                    <div data-appear="fadeInUp" data-delay="800">
+                                      <h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1" style="font-size: 1.5rem;">
+                                        <%= bannerTwo[0].title %>                                  
+                                      </div>
+                                   
+                                    <div data-appear="zoomIn" data-delay="1600">
+                                      <a  class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 btn btn-primary" style="font-size: 0.8rem;">
+                                        Shop Now
+                                      </a>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <% } %>
+
+                              </div>
+                              </div>
+
+                              
+                              <!-- Main content -->
+                              <div class="row">
+                                <div class="col-lg-7 card">
+                                  <table class="table align-items-center mb-0 ">
+                                    <thead>
+                                      <tr>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">TITLE</th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">DESCRIPTION</th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">BANNER</th>
+                                        <th class="text-secondary opacity-7"></th>
+                                   
+                                        <th></th>
+
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+
+                                      <% for(let i=0;i<bannerData.length;i++){ %>
+                                    <tr>
+                                      <td class="" style="width: 220px;"><%= bannerData[i].title %></td>
+                                        <td class="" style="width: 220px;">
+                                          <% if (bannerData[i].description.length > 10) { %>
+                                            <span data-toggle="tooltip" data-placement="top" title="<%= bannerData[i].description %>" class="description-tooltip<%= i %>">
+                                              <%= bannerData[i].description.substring(0, 10) + '...' %>
+                                              <div class="description-popup<%= i %> d-none">
+                                                <%= bannerData[i].description %>
+                                              </div>
+                                            </span>
+                                          <% } else { %>
+                                            <%= bannerData[i].description %>
+                                          <% } %>
+                                      </td>
+
+                                      <td class="" style="width: 220px;" ><img width="150" height="100" src="/productimages/<%= bannerData[i].image[0] %>"></td>
+
+                                      <td><a href="/admin/banner?index=<%= i %>"><i class="bi bi-three-dots"></i></a></td>
+
+                                      <td><a href="/admin/banner-delete?id=<%= bannerData[i]._id %>"><i class="bi bi-trash"></i></a></td>
+
+                                    </tr>
+                                      <% } %>
+
+                                    </tbody>
+                                  </table>
+
+                                </div>
+
+                                <div class="col-lg-5">
+                                  <div class="card mb-4">
+                                    <div class="card-body">
+                                      <div class="mb-3 d-flex justify-content-between">
+
+                                      <% if(!index){ %>
+                                        <div class="card-body px-5">
+                                          <div class="dis-flex justify-content-center my-0">
+                                            <h4>Add New</h4>
+                                            <form method="post" action="/admin/add-banner" id="" enctype="multipart/form-data">
+                                                  <div class="col-md-12 mb-3">
+                                                      <label for="">title</label>
+                                                      <input type="text" class="form-control" name="title" id=""  placeholder="" value="" minlength="" required>
+                                                      <span class="error text-danger" id="couponCode-error"></span>
+                                                      <div class="invalid-feedback">
+                                                          Valid title required.
+                                                      </div>
+                                                  </div>
+
+                                                  <div class="col-md-12 mb-3">
+                                                    <label for="">Description</label>
+                                                    <textarea type="text" class="form-control"  placeholder="" value="" minlength="" name="description" id="" cols="10" rows="3" required></textarea>
+                                                    <span class="error text-danger" id="couponCode-error"></span>
+                                                    <div class="invalid-feedback">
+                                                      Valid title required.
+                                                    </div>
+                                                </div>
+
+                                                </div>
+
+                                                  <div class="col-md-12 mb-3">
+                                                      <label for="">Image</label>
+                                                      <input type="file" accept="image/jpeg, image/png, image/gif" class="form-control" name="image" minlength="" required>
+                                                      <span class="error text-danger" id="couponCode-error"></span>
+                                                      <div class="invalid-feedback">
+                                                        Valid title required.
+                                                      </div>
+                                                  </div>
+
+                                                    <button class="btn btn-primary btn-lg btn-block" type="submit">Add </button>
+                                                    <br>
+                                          </form>
+                                        </div>
+                                        <% }else{ %>
+
+                                          <div class="card-body px-5">
+                                            <div class="dis-flex justify-content-center my-0">
+                                              <h4>View</h4>
+                                              <form method="post" action="/admin/banner-edit?id=<%= bannerData[index]._id %>" id="" enctype="multipart/form-data">
+                                                    <div class="col-md-12 mb-3">
+                                                        <label for="">title</label>
+                                                        <input type="text" class="form-control" name="title" id=""  placeholder="" value="<%= bannerData[index].title %>" minlength="" required>
+                                                        <span class="error text-danger" id="couponCode-error"></span>
+                                                        <div class="invalid-feedback">
+                                                            Valid title required.
+                                                        </div>
+                                                    </div>
+  
+                                                    <div class="col-md-12 mb-3">
+                                                      <label for="">Description</label>
+                                                      <textarea type="text" class="form-control"  placeholder="" value="" minlength="" name="description" id="" cols="10" rows="3" required><%= bannerData[index].description %></textarea>
+                                                      <span class="error text-danger" id="couponCode-error"></span>
+                                                      <div class="invalid-feedback">
+                                                        Valid title required.
+                                                      </div>
+                                                  </div>
+  
+                                                  </div>
+                                                        <img src="/productimages/<%= bannerData[index].image[0] %>" alt=" " style="height: 150px; width: 250px;">
+                                                    <div class="col-md-12 mb-3">
+                                                        <label for="">Image</label>
+                                                        <input type="file" accept="image/jpeg, image/png, image/gif" class="form-control" name="image" minlength=""  >
+                                                        <span class="error text-danger" id="couponCode-error"></span>
+                                                        <div class="invalid-feedback">
+                                                          Valid title required.
+                                                        </div>
+                                                    </div>
+  
+                                                      <button class="btn btn-secondary btn-sm btn-block" type="submit">update </button>
+                                                      <br>
+                                            </form>
+                                            <form method="post" action="/admin/banner-apply?id=<%= bannerData[index]._id %>">
+                                              <div class="card py-3 px-3 mb-3">
+
+                                                <label for="flagIndex">Apply Banner</label>
+
+                                                <select name="flagIndex" id="flagIndex">
+                                                  <option value="1">Banner 1</option>
+                                                  <option value="2">Banner 2</option>
+                                                </select>   
+
+                                                <button class="btn btn-secondary btn-sm btn-block mt-3" type="submit">apply </button>
+
+                                                
+                                              </div>
+
+
+                                            </form>
+                                          </div>
+                                          <% } %>        
+                                    </div>
+                                   </div>
+                                 </div>
+                               </div> 
+
+                              </div>
+                              </div>
+                            </div>
+                         </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+
+
+
+
+<%- include('../layouts/adminFooter') %>
+
+<script>
+
+  document.getElementById('banner').classList='nav-link text-white active'
+  
+  </script>
+
+

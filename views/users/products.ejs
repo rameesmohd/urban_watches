@@ -1,0 +1,467 @@
+<%- include('../layouts/UserHeader') %>
+
+<style>
+	body{
+	background-color: #eee;
+  }
+  
+ 
+
+  .form-control::placeholder {
+	font-size: 5px;
+  }
+  
+  
+  div.stars {
+	width: 20px;
+  
+	display: inline-block;
+  }
+  
+  
+  input.star { display: none; }
+  
+  label.star {
+  
+	float: right;
+  
+	padding: 5px;
+  
+	font-size: 15px;
+  
+	color: #818181;
+  
+	transition: all .2s;
+  
+  }
+  
+  
+  input.star:checked ~ label.star:before {
+  
+	content: '\f005';
+  
+	color: #FD4;
+  
+	transition: all .25s;
+  
+  }
+  
+   
+  input.star-5:checked ~ label.star:before {
+  
+	color: #FE7;
+  
+	text-shadow: 0 0 10px #952;
+  
+  }
+  
+  input.star-1:checked ~ label.star:before { color: #F62; }
+  
+  label.star:hover { transform: rotate(-15deg) scale(1.3); }
+  
+  label.star:before {
+  
+	content: '\f006';
+  
+	font-family: FontAwesome;
+  
+  }
+
+    [data-crl8-container-id="custom-gallery"] {
+     display: none;
+    }
+
+   .card-container h3 > a.anchor-mask { text-decoration: none !important; }
+   .card-container h3 > a.anchor-mask::after {
+       content: '';
+       position: absolute;
+       left: 0;
+       top: 0;
+       right: 0;
+       bottom: 0;
+   }
+
+   .card-container b, p, i, small, span, strong { position: relative; }
+
+   .fsl-set-02152023-spring{
+        max-width: 100%;
+        height: auto;
+    }
+
+   /* X-LARGE - Laptop */
+   @media screen and (min-width: 1024px){
+
+   }
+
+   /* LARGE - iPad Pro */
+   @media screen and (max-width: 1024px){
+
+   }
+
+   /* MEDIUM - iPad+ */
+   @media screen and (min-width: 768px){
+       
+   }
+
+   /* MEDIUM - iPad */
+   @media screen and (max-width: 768px){
+
+   }
+
+   /* SMALL - iPhone */
+   @media screen and (max-width: 767px){
+       
+   }
+   .text-24{
+       font-size: 24px;
+   }
+   .visnav-height {
+        min-height: 165px;
+    }
+    .carousel-indicators li {
+        display: inline-block;
+        height: 7px;
+        width: 7px;
+        border-radius: 50%;
+        background-color: grey;
+    }
+    .carousel-indicators {
+        bottom: -1em;
+    }
+
+	input{
+		display: inline-block;
+	}
+					
+</style>
+
+
+<div class="content-slot slot-grid-header __web-inspector-hide-shortcut__ ">
+<div id="cat-banner">
+
+
+<div class="row mb-1 d-flex justify-content-center" >
+	<% if(gender != null && gender == 'Female'){ %>
+		<div class="col-12 my-2 text-center py-5">
+			<h2 class="text-24">Women’s Category</h2>
+		</div>
+		
+		<div class="col-10 offset-1 d-none d-md-block mb-3 ">
+			<div class="flex-row d-flex justify-content-center">
+	
+	
+				<div class="col-2 justify-content-end align-items-center text-center">
+					<a href="/product?category=HANDBAGS&genter=Female">
+						<img alt="Woman holding a brown leather micro bag." height="380" width="380" class="card-img fsl-set-02152023-spring" src="https://www.fossil.com/on/demandware.static/-/Library-Sites-FossilSharedLibrary/default/dwba041b85/2023/SP23/set_02152023_global/wdp/0215_Spring_WDP_handbags.jpg" fetchpriority="high">
+						<p><u><strong>HANDBAGS</strong></u></p>
+					</a>
+				</div>
+				<div class="col-2 justify-content-end align-items-center text-center">
+					<a href="/product?category=WATCHES&genter=Female">
+						<img alt="A woman wearing a Carlie watch." height="380" width="380" class="card-img fsl-set-02152023-spring" src="https://www.fossil.com/on/demandware.static/-/Library-Sites-FossilSharedLibrary/default/dwb977b636/2023/SP23/set_02152023_global/wdp/0215_Spring_WDP_Watches.jpg" fetchpriority="high">
+						<p><u><strong>WATCHES</strong></u></p>
+					</a>
+				</div> 
+				<div class="col-2 justify-content-end align-items-center text-center">
+					<a href="/product?category=WALLETS&genter=Female">
+						<img alt="Three colourful women’s wallets." height="380" width="380" class="card-img fsl-set-02152023-spring" src="https://www.fossil.com/on/demandware.static/-/Library-Sites-FossilSharedLibrary/default/dwe3bb6d80/2023/SP23/set_02152023_global/wdp/0215_Spring_WDP_Wallets.jpg" fetchpriority="high">
+						<p><u><strong>WALLETS</strong></u></p>
+					</a>
+				</div>
+		
+				<div class="col-2 justify-content-end align-items-center text-center">
+					<a href="/product?category=SMARTWATCHES&genter=Unisex">
+						<img alt="Woman’s smartwatch." height="380" width="380" class="card-img fsl-set-02152023-spring" src="https://www.fossil.com/on/demandware.static/-/Library-Sites-FossilSharedLibrary/default/dwbda7bd84/2023/SP23/set_02152023_global/wdp/0215_Spring_WDP_Smartwatches.jpg" fetchpriority="high">
+						<p><u><strong>SMARTWATCHES</strong></u></p>
+					</a>
+				</div>
+				
+			</div>
+		</div>
+	<% }else if(gender != null && gender == 'Male'){ %>
+		<div class="col-12 my-2 text-center py-5">
+			<h2 class="text-24">Men's Category</h2>
+		</div>
+		
+		<div class="col-10 offset-1 d-none d-md-block mb-3 ">
+			<div class="flex-row d-flex justify-content-center">
+	
+				<div class="col-2 justify-content-end align-items-center text-center">
+					<a href="/product?category=WATCHES&genter=Male">
+						<img alt="" height="380" width="380" class="card-img fsl-set-02152023-spring" src="https://www.fossil.com/on/demandware.static/-/Library-Sites-FossilSharedLibrary/default/dw9741445f/2023/SP23/set_02152023_global/mdp/0215_Spring_MDP_Watches.jpg" fetchpriority="high">
+						<p><u><strong>WATCHES</strong></u></p>
+					</a>
+				</div> 
+
+				<div class="col-2 justify-content-end align-items-center text-center">
+					<a href="/product?category=WALLETS&genter=Male">
+						<img alt="." height="380" width="380" class="card-img fsl-set-02152023-spring" src="https://www.fossil.com/on/demandware.static/-/Library-Sites-FossilSharedLibrary/default/dwaa8bc229/2023/SP23/set_02152023_global/mdp/0215_Spring_MDP_Wallets.jpg" fetchpriority="high">
+						<p><u><strong>WALLETS</strong></u></p>
+					</a>
+				</div>
+	
+				<div class="col-2 justify-content-end align-items-center text-center">
+					<a href="/product?category=BAGS&genter=Male">
+						<img alt="" height="380" width="380" class="card-img fsl-set-02152023-spring" src="https://www.fossil.com/on/demandware.static/-/Library-Sites-FossilSharedLibrary/default/dw1432b6a8/2023/SP23/set_02152023_global/mdp/0215_Spring_MDP_Bags.jpg" fetchpriority="high">
+						<p><u><strong>BAGS</strong></u></p>
+					</a>
+				</div>
+				
+				<div class="col-2 justify-content-end align-items-center text-center">
+					<a href="/product?category=SMARTWATCHES&genter=Unisex">
+						<img alt="" height="380" width="380" class="card-img fsl-set-02152023-spring" src="https://www.fossil.com/on/demandware.static/-/Library-Sites-FossilSharedLibrary/default/dw6080d102/2023/SP23/set_02152023_global/mdp/0215_Spring_MDP_Smartwatches.jpg" fetchpriority="high">
+						<p><u><strong>SMARTWATCHES</strong></u></p>
+					</a>
+				</div>
+				
+			</div>
+		</div>
+		<% } %>
+	
+	<div class="col-12 d-md-none">
+		<div class="carousel slide" data-ride="carousel" id="wdp_carousel" data-interval="5000">
+			<div class="carousel-inner visnav-height">
+				
+				<div class="carousel-item active" aria-label="carousel-slide">
+					<div class="flex-row d-flex">
+						<div class="col-4 text-center">
+							<a href="">
+								<img alt="Woman holding a brown leather micro bag." height="380" width="380" class="card-img fsl-set-02152023-spring" src="https://www.fossil.com/on/demandware.static/-/Library-Sites-FossilSharedLibrary/default/dwba041b85/2023/SP23/set_02152023_global/wdp/0215_Spring_WDP_handbags.jpg" fetchpriority="high">
+								<p><u><strong>HANDBAGS</strong></u></p>
+							</a>
+						</div>
+						<div class="col-4 text-center">
+							<a href="">
+								<img alt="A woman wearing a Carlie watch." height="380" width="380" class="card-img fsl-set-02152023-spring" src="https://www.fossil.com/on/demandware.static/-/Library-Sites-FossilSharedLibrary/default/dwb977b636/2023/SP23/set_02152023_global/wdp/0215_Spring_WDP_Watches.jpg" fetchpriority="high">
+								<p><u><strong>WATCHES</strong></u></p>
+							</a>
+						</div>
+						<div class="col-4 text-center">
+							<a href="">
+								<img alt="Three colourful women’s wallets." height="380" width="380" class="card-img fsl-set-02152023-spring" src="https://www.fossil.com/on/demandware.static/-/Library-Sites-FossilSharedLibrary/default/dwe3bb6d80/2023/SP23/set_02152023_global/wdp/0215_Spring_WDP_Wallets.jpg" fetchpriority="high">
+								<p><u><strong>WALLETS</strong></u></p>
+							</a>
+						</div>
+					</div>
+				</div>
+				
+				<div class="carousel-item" aria-label="carousel-slide">
+					<div class="flex-row d-flex">
+						
+						<div class="col-4 text-center">
+							<a href="https://www.fossil.com/en-in/watches/womens-watches/smartwatches/">
+								<img alt="Woman’s smartwatch." height="380" width="380" class="card-img fsl-set-02152023-spring" src="https://www.fossil.com/on/demandware.static/-/Library-Sites-FossilSharedLibrary/default/dwbda7bd84/2023/SP23/set_02152023_global/wdp/0215_Spring_WDP_Smartwatches.jpg" fetchpriority="high">
+								<p><u><strong>SMARTWATCHES</strong></u></p>
+							</a>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+			<div class="carousel-indicators m-auto w-75">
+				<a href="#wdp_carousel" role="button" data-slide="prev"> <i class="fa fa-chevron-left"></i> <span class="">PREV</span> </a> <span class="mx-1">|</span> <a href="#wdp_carousel" role="button" data-slide="next"> <span class="">NEXT</span> <i class="fa fa-chevron-right"></i> </a>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+<!-- Product -->
+<div class="bg0 m-t-23 p-b-140">
+	<div class="container">
+		<div class="flex-w flex-sb-m p-b-52">
+			<div class="flex-w flex-l-m filter-tope-group m-tb-10">
+				<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">
+					All Products
+				</button>		
+				</div>
+
+				<div class="flex-w flex-c-m m-tb-10">
+					<div class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter">
+						<i class="icon-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-filter-list"></i>
+						<i class="icon-close-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
+						 Filter
+					</div>
+
+					<div id="xxx" class="flex-c-m stext-106 cl6 size-105 bor4 pointer hov-btn3 trans-04 m-tb-4 js-show-search">
+						<i class="icon-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-search"></i>
+						<i class="icon-close-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
+						Search
+					</div>
+				</div>
+				<!-- Search product -->		
+							
+			
+					<div class="dis-none panel-search w-full p-t-10">
+						<form id="productFilter">
+						<% if(gender != null && gender == 'Female'){ %><input type="hidden" value="Female" name="gender"> <% } %>
+						<% if(gender != null && gender == 'Male'){ %><input type="hidden" value="Male" name="gender"> <% } %>
+
+						<div class="bor8 dis-flex p-l-15">
+							<input id="search"  class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" name="search" placeholder="Search">
+							<button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04 btn btn-light" style="width: 100px; height: auto;" type="button" onclick="filter()">
+								<i class="zmdi zmdi-search" style="font-size: xx-large;"></i>
+							</button>
+						</div>	
+					</div>
+					<!-- Filter -->
+					<div class="dis-none panel-filter w-full p-t-10">
+						<div class="wrap-filter flex-w bg6 w-full p-lr-40 p-t-27 p-lr-15-sm">
+							<div class="filter-col2 p-r-15 p-b-27">
+								<div class="mtext-102 cl2 p-b-15">
+									Category
+								</div>
+								<ul>
+									<li class="p-b-6">
+										<input type="radio" name="category" value="all"  class="filter-link stext-106 trans-04 filter-link-active" onclick="filter()"> All
+									</li>
+									<% for( let i = 0; i < category.length; i++ ) { %>
+										<li class="p-b-6">
+											<input type="radio" name="category" value="<%= category[i]._id %>" class="filter-link stext-106 trans-04" onclick="filter()"> <%= category[i].name %>
+										</li>
+									<% } %>
+
+								</ul>
+							</div>
+							<div class="filter-col1 p-r-15 p-b-27">
+								<div class="mtext-102 cl2 p-b-15">
+									Sort By
+								</div>
+
+								<ul>
+									<li class="p-b-6">
+										<input type="radio" name="sort" value="all" class="filter-link stext-106 trans-04" onclick="filter()"> ALL
+									</li>
+
+									<li class="p-b-6">
+										<input type="radio" name="sort" value="lowToHigh" class="filter-link stext-106 trans-04" onclick="filter()"> Price: Low to High
+									</li>
+
+									<li class="p-b-6">
+										<input type="radio" name="sort" value="highToLow" class="filter-link stext-106 trans-04" onclick="filter()"> Price: High to Low
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+
+			<div id="products-row" class="row isotope-grid" style="position: relative;">
+				<% if(product.length >0){ %>
+				 <% 	for(let i=0;i<product.length;i++){   %>
+					  
+				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women" >
+					<div class="block2">
+						<div class="block2-pic hov-img0">
+							<img src="/productimages/<%= product[i].image[0] %>" alt="IMG-PRODUCT">
+						</div>
+						<div class="block2-txt flex-w flex-t p-t-14">
+							<div class="block2-txt-child1 flex-col-l ">
+								<a href="/product-view?id=<%= product[i]._id %>" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+								<%= product[i].name %>
+								</a>
+								<div class="d-flex align-items-center ">
+									<span class="stext-105 cl3">
+										₹<%= product[i].price %>
+									</span>
+									<div class="ml-5">
+										<% if(product[i].rating != null || typeof product[i].rating != 'undefined'){ %>
+											<form id="rating-form" action="" method="post">
+												<% for( let j = 5; j >= 1; j-- ) { %>
+												<input class="star star-<%= j %>" id="star-<%= j %>" type="radio"  <% if (product[i].rating == j) { %>checked<% } %> disabled>
+												<label class="star star-<%= j %>" for="star-<%= j %>"></label>
+												<% } %>
+											</form>
+										  <% } %>
+									</div>
+								</div>			
+							</div>
+							
+							<div class="block2-txt-child2 flex-r p-t-3">
+
+								<div id="<%= product[i]._id %>icon2" style="display: none;" onclick="removewishlist('<%= product[i]._id %>')" class="pos-relative">
+								<img class="icon-heart2 trans-04 " src="images/icons/icon-heart-02.png" alt="ICON" style="cursor: pointer;">
+								</div>
+							
+								<div id="<%= product[i]._id %>icon1" onclick="addtowishlist('<%= product[i]._id %>')" class="pos-relative">
+								<img class="icon-heart1 trans-04" src="images/icons/icon-heart-01.png" alt="ICON" style="cursor: pointer;">
+								</div>
+
+							</div>
+
+						</div>
+					</div>
+				</div>	
+				<%}} %>
+			</div>
+		</div>
+	</div>
+		
+
+	<!-- Back to top -->
+	<div class="btn-back-to-top" id="myBtn">
+		<span class="symbol-btn-back-to-top">
+			<i class="zmdi zmdi-chevron-up"></i>
+		</span>
+	</div>
+
+	<script>
+		
+		function filter(){
+			const form = document.querySelector('#productFilter');
+			const formData = new FormData(form);
+			fetch('/productfilter', {
+				method: 'POST',
+				headers: {
+				'Content-Type': 'application/x-www-form-urlencoded'
+				},
+				body: new URLSearchParams(formData)
+			})
+			.then(response => response.json())
+			.then(data => {
+			if(data.success){
+							var row = $('#products-row'); 
+							$('#products-row').empty();	
+							$.each(data.products, function(index, product) {
+								var productCard = $('<div>').addClass('col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women lala').html(
+									'<div class="block2">' +
+									'<div class="block2-pic hov-img0" >' + '<img src="/productimages/' +  product.image[0] +  '" alt="IMG-PRODUCT">' + '</div>'
+										+ '<div class="block2-txt flex-w flex-t p-t-14">' +
+											'<div class="block2-txt-child1 flex-col-l ">' + 
+												'<a href="/product-view?id=' + product._id +' " class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">' +
+															product.name +
+															'</a>' +
+															'<span class="stext-105 cl3">' +
+																'₹' + product.price
+															+'</span>'+
+											'</div>'+
+											'<div class="block2-txt-child2 flex-r p-t-3">'+
+												'<div id=" '+ product._id +'icon2" style="display: none;" onclick="removewishlist(' +  product._id + ')" class="pos-relative">'+
+															'<img class="icon-heart2 trans-04 " src="images/icons/icon-heart-02.png" alt="ICON" style="cursor: pointer;">'+
+															'</div>' +
+															'<div id=" '+ product._id +'icon1" style="display: none;" onclick="removewishlist(' +  product._id + ')" class="pos-relative">'+
+															'<img class="icon-heart1 trans-04 " src="images/icons/icon-heart-01.png" alt="ICON" style="cursor: pointer;">'+
+															'</div>' + 
+											'</div>' +
+											'</div>' +
+											'</div>' +
+											'</div>'
+									
+											);
+										row.append(productCard);
+									});
+								}
+        					})
+			.catch(error => {
+				console.error(error);
+			});
+		}
+
+	</script>
+
+	<%- include('../layouts/UserFooter') %>
+	
+

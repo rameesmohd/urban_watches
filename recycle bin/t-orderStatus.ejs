@@ -1,0 +1,78 @@
+<%- include('../layouts/UserHeader.ejs',session,cartData) %>
+
+
+<div id="page">
+    <div class="container">
+        <div class="mt-5 ">
+            <h4>Orders List</h4>
+        </div>
+    </div>
+    <section class="mt-5 mb-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <table class="table table-striped" id="user-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Order ID & Orderd Date</th>
+
+                                <th scope="col">Expected delivery date</th>
+
+                                <th scope="col">Total Bill</th>
+                                <th scope="col">Payment Method</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Details</th>
+
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                           
+                                <% orderData.forEach(element => {
+                                    
+                              
+                            
+                             for( let i = 0; i < element.order.length; i++ ) { %>
+                            
+                            
+                            <tr>
+
+                                <td scope="row">
+                                    <div>Order ID :<%=orderData[i]._id%></div>
+                                    <div>Orderd Date :<%=element.order[i].date %></div>
+                                    
+                                </td>
+
+                                <td>
+
+                                    <div><%=element.order[i].arriveDate%> </div>
+                                  
+                                </td>
+                                <td>
+                                    <div>₹ <%=element.order[i].total %></div>
+                                    
+                                </td>
+
+                                <td>
+                                    <div><%= element.order[i].paymentMethod %> </div>
+                                </td>
+                                 <td>
+                                    
+                                    <div><br><%=element.order[i].status %></div>
+                                </td>
+
+                                <td><a href="/orderView?id=<%=element._id %>" class="btn btn-primary">Details</a></td>
+                            </tr>
+                            <% } %>
+                       <% }); %>
+                            
+                            
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<%- include('../layouts/UserFooter.ejs') %>

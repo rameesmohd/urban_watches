@@ -1,0 +1,179 @@
+<%- include('../layouts/adminHeader') %>
+<main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+
+    <div class="container-fluid py-4">
+      <div class="row">
+        <div class="col-12">
+          <div class="card my-4">
+            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+              <div class="bg-gradient-dark shadow-dark border-radius-lg pt-4 pb-3">
+                <div class="d-flex justify-content-between align-items-center px-3">
+                  <h6 class="text-white text-capitalize mb-0">ADD COUPONS</h6>
+            
+                </div>
+              </div>
+            </div>
+            
+            <div class="card-body px-5">
+        
+                <div class="dis-flex justify-content-center my-0">
+
+                    <form method="post" action="/admin/add-coupon" id="couponform">
+                        <h3 class="mb-3">Add Coupon</h3>
+                      
+                          <div class="col-md-6 mb-3">
+                            <label for="firstName">Coupon Code</label>
+                            <input type="text" class="form-control" name="couponCode" id="couponCode"  placeholder="Coupon Code" value="" minlength="3" required>
+                            <span class="error text-danger" id="couponCode-error"></span>
+                            <div class="invalid-feedback">
+                              Valid Coupon Code is required.
+                            </div>
+                          </div>
+                          <div class="col-md-6 mb-3">
+                            <label for="lastName">Title</label>
+                            <input type="text" class="form-control" name="title"  id="title" placeholder="Title" value="" required>
+                            <span class="error text-danger" id="title-error"></span>
+                            <div class="invalid-feedback">
+                              Valid title is required.
+                            </div>
+                          </div>
+                
+                        <div class="col-md-6 mb-3">
+                          <label for="address">Expiry Date</label>
+                          <input type="date" name="expiryDate" class="form-control" id="expiryDate"  placeholder="Expiry Date"  value=" " required min="2023-04-15">
+                          <span class="error text-danger" id="expiryDate-error"></span>
+                          <div class="invalid-feedback">
+                            select expiry date
+                          </div>
+                        </div>
+                    
+                        <div class="row">
+                        <div class="mb-3 col-md-3">
+                          <label for="address2">Min Purchase Amount(₹)</label>
+                          <input type="number" name="minPurchaseAmount" class="form-control" id="minPurchaseAmount" min="1" placeholder="₹" value="" required>
+                          <span class="error text-danger" id="minPurchaseAmount-error"></span>
+                        </div>
+
+                        <div class="mb-3 col-md-2">
+                            <label for="address2">Total Number of Coupon</label>
+                            <input type="number" name="noOfCoupon" class="form-control" id="noOfCoupon" placeholder="" value="" min="1" required>
+                            <span class="error text-danger" id="noOfCoupon-error"></span>
+                          </div>
+
+                        </div>
+                        
+                        <div class="row">
+                        <div class="mb-3 col-md-2">
+                            <label for="address2">Discount(%)</label>
+                            <input type="number" name="discount" class="form-control" id="discount" min="0" max="100" placeholder="" value="" required>
+                            <span class="error text-danger" id="discount-error"></span>
+                          </div>
+
+                          
+                        <div class="mb-3 col-md-3">
+                            <label for="maxDiscountAmount">Max Discount Amount(₹)</label>
+                            <input type="number" name="maxDiscountAmount" id="maxDiscountAmount" min="1" class="form-control" placeholder="₹" value="" required>
+                            <span class="error text-danger" id="maxDiscountAmount-error"></span>
+                          </div>
+                        </div>
+
+                        <button class="btn btn-primary btn-lg btn-block" type="submit">Add </button>
+                        <br>
+                        <div class="dis-flex justify-content-end mr-3"> <a href="/admin/coupon">Back</a></div>
+                    </form>
+
+                    
+               </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+<script>
+  $(document).ready(function() {
+     $('#couponform').submit(function(e) {
+      e.preventDefault();
+      var error = false;
+      console.log('dhfgjdhgvf');
+  
+      // Validate full name
+      var name = $('#title').val().trim();
+        if (!name) {
+          $('#title-error').text('Please enter title');
+          error = true;
+      } else {
+        $('#title-error').text('');
+      }
+  
+      // Validate house name
+      var couponCode = $('#couponCode').val().trim();;
+      if (!couponCode) {
+        $('#couponCode-error').text('Please enter valid coupon code');
+        error = true;
+      } else {
+        $('#couponCode-error').text('');
+      }
+  
+      // Validate pincode
+      var expiryDate = $('#expiryDate').val();
+
+      if (!expiryDate) {
+        $('#expiryDate-error').text('Please enter a valid expiry date');
+        error = true;
+      } else {
+        $('#expiryDate-error').text('');
+      }
+  
+      // Validate city
+      var minPurchaseAmount = $('#minPurchaseAmount').val();
+      if (!minPurchaseAmount) {
+        $('#minPurchaseAmount-error').text('Please enter min purchase amount');
+        error = true;
+      } else {
+        $('#minPurchaseAmount-error').text('');
+      }
+  
+      // Validate district
+      var noOfCoupon = $('#noOfCoupon').val();
+      if (!noOfCoupon) {
+        $('#noOfCoupon-error').text('Please enter number of coupon');
+        error = true;
+      } else {
+        $('#noOfCoupon-error').text('');
+      }
+        // Validate state
+        var discount = $('#discount').val();
+        if (!discount) {
+            $('#discount-error').text('Please enter discount');
+            error = true;
+        } else {
+            $('#discount-error').text('');
+        }
+    
+      // Validate mobile number
+      var maxDiscountAmount = $('#maxDiscountAmount').val();
+      console.log(maxDiscountAmount);
+      if (!maxDiscountAmount) {
+        $('#maxDiscountAmount-error').text('Please enter max discount amount');
+        error = true;
+      } else {
+        $('#maxDiscountAmount-error').text('');
+      }
+      
+      // Submit the form if no errors
+      if (!error) {
+        this.submit();
+      }
+    });
+  });
+</script>
+
+
+
+
+
+<%- include('../layouts/adminFooter') %>

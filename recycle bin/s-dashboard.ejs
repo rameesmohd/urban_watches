@@ -1,0 +1,79 @@
+<%- include('../layouts/header.ejs') %>
+
+
+<nav class="navbar navbar-light bg-light">
+  <div class="container-fluid">
+    <div>
+       <a class="navbar-brand">Dashboard</a>
+       
+       <form action="">
+        <input type="search" placeholder="Search here" name="search">
+        <input type="submit" value="Search">
+       </form>
+       
+    </div>
+    
+   <div class="d-flex">
+    <form class="" action="/admin/logout" method="">
+      <button class="btn btn-outline-success" type="submit">LogOut</button>
+    </form>
+
+   </div>
+    
+  </div>
+</nav>
+
+
+<div class="container">
+    <div class="row">
+      <div class="col-12">
+        <br><button type="submit" class="btn btn-success"><a class=" text-light text-decoration-none" href="/admin/new-user">addnew user</a></button><br><br>
+        <% 
+if(typeof mssg !=='undefined'){
+    %>
+    <p style="color: green;"> <%= mssg  %> </p>
+    <%
+}
+%>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">mobile</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+           
+          <% 
+            if(users.length >0){
+                for(let i=0;i<users.length;i++){
+                  %>
+                  <tr>
+                    <td scope="row"><%= users[i].name %></td>
+                    <td><%= users[i].email %></td>
+                    <td><%= users[i].mobile %></td>
+             
+                    <td>
+                      <button type="submit" class="btn btn-success"><a class=" text-light text-decoration-none" href="/admin/edit-user?id=<%- users[i]._id%>">edit</a></button>
+                    
+                      <button type="submit" class="btn btn-danger"><a class=" text-light text-decoration-none" href="/admin/delete-user?id=<%- users[i]._id%>">delete</a></button>
+                    </td>
+                  </tr>
+                  <%
+                }
+            }else{
+              %>
+        <tr>
+            <td colspan="5">Users NotFound</td>
+        </tr>
+        <%
+            }
+           %>
+            
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
