@@ -6,6 +6,7 @@ const app = express();
 const path = require('path')
 
 mongoose.connect(process.env.url).then(res=>{
+  console.log(process.env.url);
   console.log('database connected')
 })
 .catch(err=>{
@@ -33,6 +34,7 @@ const errorRoute = require('./routes/errorRoute')
 app.use("/",errorRoute)
 
 app.listen(process.env.port,()=>{
+  console.log(process.env.port);
     console.log("Server started...");
 })
 
