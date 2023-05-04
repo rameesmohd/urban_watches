@@ -234,7 +234,7 @@
 			<div class="header-cart-content flex-w js-pscroll">
 				
 				<ul class="header-cart-wrapitem w-full">
-					<% if(cartData == null){ %>
+					<% if(cartData == null || typeof cartData == 'undefined'){ %>
 					
 						<h2>Cart is Empty</h2>
 						<br><br><br>
