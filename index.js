@@ -13,7 +13,6 @@ mongoose.connect(process.env.url).then(res=>{
   console.log('some eror while connecting to database');
 })
 
-//app.use(logger('dev'))
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(function (req, res, next) {
