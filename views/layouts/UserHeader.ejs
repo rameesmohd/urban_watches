@@ -234,13 +234,12 @@
 			<div class="header-cart-content flex-w js-pscroll">
 				
 				<ul class="header-cart-wrapitem w-full">
-					<% if(cartData == null || typeof cartData == 'undefined'){ %>
-					
-						<h2>Cart is Empty</h2>
-						<br><br><br>
-						<h1>Login</h1>
-	
-					<% }else{ %>
+				<% if(cartData == null || typeof cartData == 'undefined'){ %>
+				
+					<h2>Cart is Empty!!</h2>
+					<br><br><br>
+			
+				<% }else{ %>
 
 					<% if(cartData.item.length==0){ %>
 						<h2>Cart is Empty!!</h2><br><br>
@@ -267,13 +266,11 @@
 				</ul>
 				<% } %>
 
-				<% if(cartData != null &&cartData.item.length==0){ %>
+				<% if(cartData != null && cartData.item.length==0){ %>
 				<div class="d-flex justify-content-center align-items-center m-r-5" style="height: 150px; flex-direction: column;">
 				
 					<img src="https://bakestudio.in/assets/images/cart/empty-cart.gif" alt="" class="" style="height:200px;width: auto; ">
-				
-				
-				
+
 				</div>
 				<% } %>
 
