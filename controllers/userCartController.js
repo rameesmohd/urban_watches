@@ -24,7 +24,7 @@ let message;
         
         }else{
 
-            res.render('empty-cart',{session})
+            res.render('empty-cart',{session,cartData})
         }
 
     }else{
