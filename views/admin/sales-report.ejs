@@ -150,7 +150,7 @@ function demoFromHTML() {
     return true;
   }
 
-  function exportToExcel() {
+function exportToExcel() {
 const table = document.getElementById('salesTable');
 const workbook = XLSX.utils.table_to_book(table, {sheet:"Sales Data"});
 const sheetName = workbook.SheetNames[0];

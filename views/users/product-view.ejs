@@ -238,28 +238,29 @@
 				</div>
 	    </div>
 		<% } %>
-
+	
 	<% if(product.rating != null || typeof product.rating != 'undefined'){ %>
 		<% for(let j=0 ;j < product.user_review.length ;j++){%>
 			<% for(let k = 0 ; k < product.user_rating.length ;k++ ){ %>
-				<% if(product.user_review.user === product.user_rating.user){ %>
+				<% if(product.user_review[j].user._id.toString() == product.user_rating[k].user){ %>
+
 				<div class="col-12  d-flex mb-2" style="padding-left: 15%; padding-right: 15%;">
 					<div class="bg-light col-lg-7 flex-col-l flex-w size-302  p-tb-10 px-5 ">
 					<div>
-					<input class="star star-5" id="star-5<% product.user_rating.user %>" type="radio" <% if (product.rating == 5) { %>checked<% } %> disabled/>
-					<label class="star star-5" for="star-5<% product.user_rating.user %>"></label>
+					<input class="star star-5" id="star-5<% product.user_rating[k] %>" type="radio" <% if (product.user_rating[k].rating == 5) { %>checked<% } %> disabled/>
+					<label class="star star-5" for="star-5<% product.user_rating[k].user %>"></label>
 					
-					<input class="star star-4" id="star-4<% product.user_rating.user %>" type="radio" <% if (product.rating == 4) { %>checked<% } %> disabled/>
-					<label class="star star-4" for="star-4<% product.user_rating.user %>"></label>
+					<input class="star star-4" id="star-4<% product.user_rating[k] %>" type="radio" <% if (product.user_rating[k].rating == 4) { %>checked<% } %> disabled/>
+					<label class="star star-4" for="star-4<% product.user_rating[k] %>"></label>
 					
-					<input class="star star-3" id="star-3<% product.user_rating.user %>" type="radio"  <% if (product.rating == 3) { %>checked<% } %> disabled/>
-					<label class="star star-3" for="star-3<% product.user_rating.user %>"></label>
+					<input class="star star-3" id="star-3<% product.user_rating[k] %>" type="radio"  <% if (product.user_rating[k].rating == 3) { %>checked<% } %> disabled/>
+					<label class="star star-3" for="star-3<% product.user_rating[k] %>"></label>
 					
-					<input class="star star-2" id="star-2<% product.user_rating.user %>" type="radio" <% if (product.rating == 2) { %>checked<% } %> disabled/>
-					<label class="star star-2" for="star-2<% product.user_rating.user %>"></label>
+					<input class="star star-2" id="star-2<% product.user_rating[k] %>" type="radio" <% if (product.user_rating[k].rating == 2) { %>checked<% } %> disabled/>
+					<label class="star star-2" for="star-2<% product.user_rating[k] %>"></label>
 					
-					<input class="star star-1" id="star-1<% product.user_rating.user %>" type="radio" <% if (product.rating == 1) { %>checked<% } %> disabled/>
-					<label class="star star-1" for="star-1<% product.user_rating.user %>"></label>
+					<input class="star star-1" id="star-1<% product.user_rating[k].user %>" type="radio" <% if (product.user_rating[k].rating == 1) { %>checked<% } %> disabled/>
+					<label class="star star-1" for="star-1<% product.user_rating[k].user %>"></label>
 					</div>
 
 					<div class="">
@@ -270,9 +271,8 @@
 					<p id="<% product.user_rating.user %>" class="text-secondary ">Submited By: <%= product.user_review[j].user.name  %></p>
 			</div>
 		</div>
-
 	 <% }}}} %>
-
+		
 		<div class="bg6 flex-c-m flex-w size-302 m-t-73 p-tb-15">
 			<span class="stext-107 cl6 p-lr-25">
 				Category :  <%= product.category.name  %>

@@ -13,7 +13,6 @@ mongoose.connect(process.env.url).then(res=>{
   console.log('some eror while connecting to database');
 })
 
-//app.use(logger('dev'))
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(function (req, res, next) {
@@ -21,15 +20,15 @@ app.use(function (req, res, next) {
     next();
   });
 
-//for user routes
+
 const userRoute = require("./routes/userRoute");
 app.use("/",userRoute)
 
-//for admin routes
+
 const adminRoute = require("./routes/adminRoute");
 app.use("/admin",adminRoute)
 
-//for 404 errors
+
 const errorRoute = require('./routes/errorRoute')
 app.use("/",errorRoute)
 

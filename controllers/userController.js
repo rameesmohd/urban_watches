@@ -31,9 +31,7 @@ const securePassword = async(password)=> {
 
 const sendVerifyMail = async(name,email,user_id)=>{
     try {
-
         const transporter = nodeMailer.createTransport({
-
             host:'smtp.gmail.com',
             port:465,
             secure:true,
@@ -41,33 +39,25 @@ const sendVerifyMail = async(name,email,user_id)=>{
             auth:{
                 user:'firstprojectest1@gmail.com',
                 pass : 'uajclcphlfmiroll'
-
             }
         })
 
         const mailOptions = {
-
             from : 'firstprojectest1@gmail.com',
             to:email,
             subject:'For Verification mail',
             html:'<p>Hii '+name+', please click here to <a href="http://localhost:5000/verify?id='+user_id+'">Verify</a> your mail.</p>'
-
         }
 
         transporter.sendMail(mailOptions, function(error,info){
-
             if(error){
-
                 console.log(error);
-
             }else{
                 console.log("Email has been sent :- ",info.response);
             }
-
         })
         
     } catch (error) {
-
         console.log(error.message);
     }
 }
