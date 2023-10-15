@@ -97,7 +97,7 @@
 						<% if(typeof userData != 'undefined' && userData!=null){ %>
 							<div class="btn btn-white hov-cl1 trans-04 p-l-11 p-r-11 ">
 								<i class="bi bi-wallet2"></i>
-								<p class="text-decoration-none">₹<%= userData.wallet %></p>
+								<p class="text-decoration-none">₹<%= Math.floor(userData.wallet) %></p>
 							</div>
 						<% } %>
 

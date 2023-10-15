@@ -235,7 +235,7 @@ const sendResetPasswordMail = async(name,email,token)=>{
             from : 'firstprojectest1@gmail.com',
             to:email,
             subject:'For Verification mail',
-            html:'<p>Hii '+name+', please click here to <a href="http://localhost:5000/forget-password?token='+token+'">reset your password</a></p>'
+            html:'<p>Hii '+name+', please click here to <a href="https://urbanwatches.online/forget-password?token='+token+'">reset your password</a></p>'
         }
 
         transporter.sendMail(mailOptions, function(error,info){
