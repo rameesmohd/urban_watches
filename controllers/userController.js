@@ -37,16 +37,16 @@ const sendVerifyMail = async(name,email,user_id)=>{
             secure:true,
             require:true,
             auth:{
-                user:'firstprojectest1@gmail.com',
-                pass : 'uajclcphlfmiroll'
+                user:'madfxtraders@gmail.com',
+                pass : 'rvbbqltdvifjklaq'
             }
         })
 
         const mailOptions = {
-            from : 'firstprojectest1@gmail.com',
+            from : 'madfxtraders@gmail.com',
             to:email,
             subject:'For Verification mail',
-            html:'<p>Hii '+name+', please click here to <a href="https://urbanwatches.online/verify?id='+user_id+'">Verify</a> your mail.</p>'
+            html:'<p>Hii '+name+', please click here to <a href="https://www.urbanwatches.online/verify?id='+user_id+'">Verify</a> your mail.</p>'
         }
 
         transporter.sendMail(mailOptions, function(error,info){
@@ -226,16 +226,16 @@ const sendResetPasswordMail = async(name,email,token)=>{
             secure:true,
             require:true,
             auth:{
-                user:'firstprojectest1@gmail.com',
-                pass : 'uajclcphlfmiroll'
+                user:'madfxtraders@gmail.com',
+                pass : 'rvbbqltdvifjklaq'
             }
         })
 
         const mailOptions = {
-            from : 'firstprojectest1@gmail.com',
+            from : 'madfxtraders@gmail.com',
             to:email,
             subject:'For Verification mail',
-            html:'<p>Hii '+name+', please click here to <a href="https://urbanwatches.online/forget-password?token='+token+'">reset your password</a></p>'
+            html:'<p>Hii '+name+', please click here to <a href="https://www.urbanwatches.online/forget-password?token='+token+'">reset your password</a></p>'
         }
 
         transporter.sendMail(mailOptions, function(error,info){
